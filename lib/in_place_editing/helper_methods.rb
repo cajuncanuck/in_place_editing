@@ -106,4 +106,12 @@ module InPlaceMacrosHelper
     tag = content_tag(tag_options.delete(:tag), h(content),tag_options)
     return tag + in_place_editor(tag_options[:id], in_place_editor_options)
   end
+  
+  def options_for_javascript(options)
+    if options.empty?
+      '{}'
+    else
+      "{#{options.keys.map { |k| "#{k}:#{options[k]}" }.sort.join(', ')}}"
+    end
+  end
 end
